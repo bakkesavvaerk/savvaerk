@@ -1,0 +1,1406 @@
+[
+    {
+        "id": "9ca6a5fd61363709",
+        "type": "tab",
+        "label": "Styring",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "cdf90b0ef016f88f",
+        "type": "ui_numeric",
+        "z": "9ca6a5fd61363709",
+        "name": "planke_tykkelse",
+        "label": "Planke tykkelse",
+        "tooltip": "",
+        "group": "b04f1bfb73eded40",
+        "order": 3,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "planke_tykkelse",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "step": "5",
+        "className": "",
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "1355ae3800715312",
+                "a1beece75a7a6c07"
+            ]
+        ]
+    },
+    {
+        "id": "b379ef50172bad7e",
+        "type": "ui_button",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "group": "b04f1bfb73eded40",
+        "order": 4,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Gå til ønsket højde",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "NæstePlanke",
+        "topicType": "flow",
+        "x": 150,
+        "y": 560,
+        "wires": [
+            [
+                "cd1857a5e6de3a7b"
+            ]
+        ]
+    },
+    {
+        "id": "7a0cf7f820e04b87",
+        "type": "ui_gauge",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "group": "af3042d9737bfff4",
+        "order": 3,
+        "width": 4,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Klingehøjde",
+        "label": "mm",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1200",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 890,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "08e635eb77f5db5f",
+        "type": "ui_numeric",
+        "z": "9ca6a5fd61363709",
+        "name": "simuleret_klingehojde",
+        "label": "Start KlingeHøjde",
+        "tooltip": "",
+        "group": "af3042d9737bfff4",
+        "order": 5,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "SimuleretKlingeHojde",
+        "topicType": "flow",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 160,
+        "y": 400,
+        "wires": [
+            [
+                "7a0cf7f820e04b87",
+                "db50ba583a1baeed"
+            ]
+        ]
+    },
+    {
+        "id": "bab72c81ce6e07eb",
+        "type": "ui_button",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "group": "b04f1bfb73eded40",
+        "order": 2,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Nulstil reference højde",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 160,
+        "y": 200,
+        "wires": [
+            [
+                "1deb42c7080c811f",
+                "cdf207f5e119b8c7",
+                "a1beece75a7a6c07"
+            ]
+        ]
+    },
+    {
+        "id": "1355ae3800715312",
+        "type": "function",
+        "z": "9ca6a5fd61363709",
+        "name": "Planke Tykkelse variabel",
+        "func": "flow.set(\"PlankeTykkelse\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db50ba583a1baeed",
+        "type": "function",
+        "z": "9ca6a5fd61363709",
+        "name": "Klinge Højde variabel",
+        "func": "flow.set(\"KlingeHøjde\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "57a4552606b9da63",
+        "type": "inject",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ØnsketHøjde",
+        "payloadType": "flow",
+        "x": 160,
+        "y": 1080,
+        "wires": [
+            [
+                "11093b136c176c8a"
+            ]
+        ]
+    },
+    {
+        "id": "11093b136c176c8a",
+        "type": "debug",
+        "z": "9ca6a5fd61363709",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "5296747cdb801b27",
+        "type": "inject",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "KlingeHøjde",
+        "payloadType": "flow",
+        "x": 160,
+        "y": 1040,
+        "wires": [
+            [
+                "3694724ad04839a3"
+            ]
+        ]
+    },
+    {
+        "id": "3694724ad04839a3",
+        "type": "debug",
+        "z": "9ca6a5fd61363709",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "9f6b8483f231a6cb",
+        "type": "inject",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PlankeTykkelse",
+        "payloadType": "flow",
+        "x": 170,
+        "y": 1000,
+        "wires": [
+            [
+                "ee5b7444816e72ad"
+            ]
+        ]
+    },
+    {
+        "id": "ee5b7444816e72ad",
+        "type": "debug",
+        "z": "9ca6a5fd61363709",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "b692f4fa8bd035b0",
+        "type": "ui_gauge",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "group": "b04f1bfb73eded40",
+        "order": 6,
+        "width": 4,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Ønsket Højde",
+        "label": "mm",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 900,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "3b8eeb54a6f70264",
+        "type": "change",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ØnsketHøjde",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 600,
+        "wires": [
+            [
+                "b692f4fa8bd035b0"
+            ]
+        ]
+    },
+    {
+        "id": "1deb42c7080c811f",
+        "type": "function",
+        "z": "9ca6a5fd61363709",
+        "name": "Reference Højde Variabel",
+        "func": "flow.set(\"ReferenceHøjde\",flow.get(\"KlingeHøjde\"))\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "ba44d47c26ecc017"
+            ]
+        ]
+    },
+    {
+        "id": "c0efe607b5363fc0",
+        "type": "inject",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ReferenceHøjde",
+        "payloadType": "flow",
+        "x": 170,
+        "y": 960,
+        "wires": [
+            [
+                "5245a87e8d300bf6"
+            ]
+        ]
+    },
+    {
+        "id": "5245a87e8d300bf6",
+        "type": "debug",
+        "z": "9ca6a5fd61363709",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "e9b302bc2366561a",
+        "type": "ui_text",
+        "z": "9ca6a5fd61363709",
+        "group": "b04f1bfb73eded40",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "Reference Højde: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 950,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ba44d47c26ecc017",
+        "type": "change",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ReferenceHøjde",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 200,
+        "wires": [
+            [
+                "e9b302bc2366561a"
+            ]
+        ]
+    },
+    {
+        "id": "562fb506be4ca573",
+        "type": "inject",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "sænk",
+        "payloadType": "flow",
+        "x": 140,
+        "y": 1160,
+        "wires": [
+            [
+                "4a099fac99ea3a2a"
+            ]
+        ]
+    },
+    {
+        "id": "4a099fac99ea3a2a",
+        "type": "debug",
+        "z": "9ca6a5fd61363709",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "d63cdccd3e6e6790",
+        "type": "inject",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "hæv",
+        "payloadType": "flow",
+        "x": 140,
+        "y": 1120,
+        "wires": [
+            [
+                "9ce8f53f6ccd1718"
+            ]
+        ]
+    },
+    {
+        "id": "9ce8f53f6ccd1718",
+        "type": "debug",
+        "z": "9ca6a5fd61363709",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "cb6d65455298bc76",
+        "type": "inject",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "NæsteHøjde",
+        "payloadType": "flow",
+        "x": 160,
+        "y": 1200,
+        "wires": [
+            [
+                "74540532e3057b54"
+            ]
+        ]
+    },
+    {
+        "id": "74540532e3057b54",
+        "type": "debug",
+        "z": "9ca6a5fd61363709",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "24a3c60419642269",
+        "type": "change",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "KlingeHojde",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 560,
+        "wires": [
+            [
+                "7a0cf7f820e04b87"
+            ]
+        ]
+    },
+    {
+        "id": "328157200ad8695a",
+        "type": "ui_text",
+        "z": "9ca6a5fd61363709",
+        "group": "b04f1bfb73eded40",
+        "order": 9,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "Hæver?",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 1400,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "0810019ce9518a18",
+        "type": "change",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "hæv",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1220,
+        "y": 500,
+        "wires": [
+            [
+                "328157200ad8695a"
+            ]
+        ]
+    },
+    {
+        "id": "6d91002996329ad9",
+        "type": "ui_text",
+        "z": "9ca6a5fd61363709",
+        "group": "b04f1bfb73eded40",
+        "order": 11,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "Sænker?",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 1400,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "f2f83d4d1f2c76d8",
+        "type": "change",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "sænk",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1220,
+        "y": 560,
+        "wires": [
+            [
+                "6d91002996329ad9"
+            ]
+        ]
+    },
+    {
+        "id": "92a80d87167af3a6",
+        "type": "inject",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "KlingeHøjde",
+        "payloadType": "flow",
+        "x": 810,
+        "y": 440,
+        "wires": [
+            [
+                "7a0cf7f820e04b87",
+                "0810019ce9518a18",
+                "f2f83d4d1f2c76d8"
+            ]
+        ]
+    },
+    {
+        "id": "cdf207f5e119b8c7",
+        "type": "function",
+        "z": "9ca6a5fd61363709",
+        "name": "Ønsket Højde variabel",
+        "func": "flow.set(\"ØnsketHøjde\", flow.get(\"ReferenceHøjde\") - flow.get(\"PlankeTykkelse\"));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 240,
+        "wires": [
+            [
+                "3b8eeb54a6f70264"
+            ]
+        ]
+    },
+    {
+        "id": "73640db3d8c8fe58",
+        "type": "change",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "NæsteHøjde",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 80,
+        "wires": [
+            [
+                "77a8f07c0d179f90"
+            ]
+        ]
+    },
+    {
+        "id": "77a8f07c0d179f90",
+        "type": "ui_text",
+        "z": "9ca6a5fd61363709",
+        "group": "b04f1bfb73eded40",
+        "order": 8,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "Næste Højde",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 930,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "a1beece75a7a6c07",
+        "type": "function",
+        "z": "9ca6a5fd61363709",
+        "name": "Næste Højde variabel",
+        "func": "flow.set(\"NæsteHøjde\", flow.get(\"ØnsketHøjde\") - flow.get(\"PlankeTykkelse\"));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 80,
+        "wires": [
+            [
+                "73640db3d8c8fe58"
+            ]
+        ]
+    },
+    {
+        "id": "b9992fb5c8c6f17d",
+        "type": "ui_button",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "group": "b04f1bfb73eded40",
+        "order": 7,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Sæt Ønsket højde til Næste Højde",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 200,
+        "y": 660,
+        "wires": [
+            [
+                "bf52d6b9fab1f117"
+            ]
+        ]
+    },
+    {
+        "id": "bf52d6b9fab1f117",
+        "type": "function",
+        "z": "9ca6a5fd61363709",
+        "name": "Sæt Ønsket højde til Næste højde",
+        "func": "flow.set(\"ØnsketHøjde\", flow.get(\"NæsteHøjde\"));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 660,
+        "wires": [
+            [
+                "3b8eeb54a6f70264"
+            ]
+        ]
+    },
+    {
+        "id": "49691f4866c6e6d8",
+        "type": "ui_button",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "group": "b04f1bfb73eded40",
+        "order": 5,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Planke er succesfuldt skåret",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 180,
+        "y": 300,
+        "wires": [
+            [
+                "a1beece75a7a6c07"
+            ]
+        ]
+    },
+    {
+        "id": "cd1857a5e6de3a7b",
+        "type": "function",
+        "z": "9ca6a5fd61363709",
+        "name": "Hæve-Sænke programmet",
+        "func": "// Initialize variables\nvar klingeHojde = flow.get('KlingeHøjde') || 0; // Klingens Højde\nvar plankeTykkelse = flow.get('PlankeTykkelse') || 0; // Planke tykkelse indstillingen\nvar onsketHojde = flow.get(\"ØnsketHøjde\") || 0;\n\n// Check if the button is pressed\nif (msg.payload === true) {\n    var delay = 1000; // Delay in milliseconds (1 second)\n\n    // Function to decrease klingeHojde and set \"sænk\" to true\n    function decreaseKlingeHojde() {\n        flow.set(\"sænk\", true);\n        flow.set(\"hæv\", false); // Reset \"hæv\" to false\n        flow.set(\"KlingeHøjde\", --klingeHojde);\n        if (klingeHojde === onsketHojde) {\n            flow.set(\"sænk\", false); // Set \"sænk\" to false when desired value is achieved\n        }\n    }\n\n    // Function to increase klingeHojde and set \"hæv\" to true\n    function increaseKlingeHojde() {\n        flow.set(\"hæv\", true);\n        flow.set(\"sænk\", false); // Reset \"sænk\" to false\n        flow.set(\"KlingeHøjde\", ++klingeHojde);\n        if (klingeHojde === onsketHojde) {\n            flow.set(\"hæv\", false); // Set \"hæv\" to false when desired value is achieved\n        }\n    }\n\n    // Decrease klingeHojde until it reaches onsketHojde\n    var decreaseInterval = setInterval(function () {\n        if (klingeHojde > onsketHojde) {\n            decreaseKlingeHojde();\n        } else {\n            clearInterval(decreaseInterval);\n        }\n    }, delay);\n\n    // Increase klingeHojde until it reaches onsketHojde\n    var increaseInterval = setInterval(function () {\n        if (klingeHojde < onsketHojde) {\n            increaseKlingeHojde();\n        } else {\n            clearInterval(increaseInterval);\n        }\n    }, delay);\n} else {\n    flow.set(\"sænk\", false);\n    flow.set(\"hæv\", false);\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 560,
+        "wires": [
+            [
+                "24a3c60419642269",
+                "3b8eeb54a6f70264"
+            ]
+        ]
+    },
+    {
+        "id": "37900e8b7e341fdd",
+        "type": "comment",
+        "z": "9ca6a5fd61363709",
+        "name": "Sæt gang i planke dokumentation",
+        "info": "",
+        "x": 510,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "ebf1f5d3ba43599f",
+        "type": "change",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "TestHøjde",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 740,
+        "wires": [
+            [
+                "fc76945306fca177"
+            ]
+        ]
+    },
+    {
+        "id": "fc76945306fca177",
+        "type": "ui_text",
+        "z": "9ca6a5fd61363709",
+        "group": "b04f1bfb73eded40",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 910,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "f4152a841df0696c",
+        "type": "ui_switch",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "label": "Hæve / Sænke",
+        "tooltip": "",
+        "group": "b04f1bfb73eded40",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "HæveEllerSænke",
+        "topicType": "flow",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 140,
+        "y": 780,
+        "wires": [
+            [
+                "3063062805b34a39"
+            ]
+        ]
+    },
+    {
+        "id": "3063062805b34a39",
+        "type": "function",
+        "z": "9ca6a5fd61363709",
+        "name": "Hæve eller Sænke variabel",
+        "func": "if (msg.payload === true) {\n    flow.set(\"Hæve\", true)\n    flow.set(\"Sænke\", false)\n}\nelse if (msg.payload === false) {\n    flow.set(\"Sænke\", true)\n    flow.set(\"Hæve\", false)\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d4d0175907e9a274",
+        "type": "inject",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Sænke",
+        "payloadType": "flow",
+        "x": 150,
+        "y": 1280,
+        "wires": [
+            [
+                "a17c3163544734f4"
+            ]
+        ]
+    },
+    {
+        "id": "a17c3163544734f4",
+        "type": "debug",
+        "z": "9ca6a5fd61363709",
+        "name": "debug 20",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "c2fd1296612a43b6",
+        "type": "inject",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Hæve",
+        "payloadType": "flow",
+        "x": 140,
+        "y": 1240,
+        "wires": [
+            [
+                "767457a80b081297"
+            ]
+        ]
+    },
+    {
+        "id": "767457a80b081297",
+        "type": "debug",
+        "z": "9ca6a5fd61363709",
+        "name": "debug 21",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "f3992f37b91be26f",
+        "type": "inject",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "TestHøjde",
+        "payloadType": "flow",
+        "x": 160,
+        "y": 1320,
+        "wires": [
+            [
+                "61d1802734bb5ae4"
+            ]
+        ]
+    },
+    {
+        "id": "61d1802734bb5ae4",
+        "type": "debug",
+        "z": "9ca6a5fd61363709",
+        "name": "debug 23",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "3dc5e7bcfcc4a8b4",
+        "type": "function",
+        "z": "9ca6a5fd61363709",
+        "name": "Test Højde program",
+        "func": "// Retrieve the stored testHojde variable\nvar testHojde = flow.get('TestHøjde') || 0;\nvar haeve = flow.get(\"Hæve\") || false;\nvar saenke = flow.get(\"Sænke\") || false;\nvar reedSwitch = flow.get(\"ReedSwitch\") || false;\nvar min = flow.get(\"EndestopBund\") || false;\n\n// Check if \"min\" is activated\nif (min === true) {\n    testHojde = 0; // Set testHojde to 0\n} else {\n    // Function node\n    if (reedSwitch === true && haeve === true) {\n        testHojde += 0.61;\n    } else if (saenke === true && reedSwitch === true) {\n        testHojde -= 0.61;\n    }\n}\n\n// Store the updated testHojde variable\nflow.set('TestHøjde', testHojde);\n\n// Return the updated testHojde value\nreturn { payload: testHojde };\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 740,
+        "wires": [
+            [
+                "ebf1f5d3ba43599f"
+            ]
+        ]
+    },
+    {
+        "id": "fbb5ad8f2b27075b",
+        "type": "ui_switch",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "label": "Reed Switch",
+        "tooltip": "",
+        "group": "b04f1bfb73eded40",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 130,
+        "y": 740,
+        "wires": [
+            [
+                "6c2f22029fd98f2d"
+            ]
+        ]
+    },
+    {
+        "id": "fc2c492ba277ae7b",
+        "type": "inject",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ReedSwitch",
+        "payloadType": "flow",
+        "x": 160,
+        "y": 1360,
+        "wires": [
+            [
+                "170659ce253e3eeb"
+            ]
+        ]
+    },
+    {
+        "id": "170659ce253e3eeb",
+        "type": "debug",
+        "z": "9ca6a5fd61363709",
+        "name": "debug 24",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "6c2f22029fd98f2d",
+        "type": "function",
+        "z": "9ca6a5fd61363709",
+        "name": "Reed Switch variabel",
+        "func": "if (msg.payload === true) {\n    flow.set(\"ReedSwitch\", true)\n}\nelse if (msg.payload === false) {\n    flow.set(\"ReedSwitch\", false)\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 740,
+        "wires": [
+            [
+                "3dc5e7bcfcc4a8b4"
+            ]
+        ]
+    },
+    {
+        "id": "d3d6dbb171cd18f2",
+        "type": "ui_switch",
+        "z": "9ca6a5fd61363709",
+        "name": "",
+        "label": "Endestop bund",
+        "tooltip": "",
+        "group": "b04f1bfb73eded40",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "min",
+        "topicType": "flow",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 140,
+        "y": 820,
+        "wires": [
+            [
+                "d7cbd6d9aee3c587"
+            ]
+        ]
+    },
+    {
+        "id": "d7cbd6d9aee3c587",
+        "type": "function",
+        "z": "9ca6a5fd61363709",
+        "name": "Endestop bund variabel",
+        "func": "if (msg.payload === true) {\n    flow.set(\"EndestopBund\", true)\n}\nelse if (msg.payload === false) {\n    flow.set(\"EndestopBund\", false)\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ee3ea8495d8507b1",
+        "type": "ui_spacer",
+        "z": "9ca6a5fd61363709",
+        "name": "spacer",
+        "group": "b04f1bfb73eded40",
+        "order": 10,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "18804ac10db76d18",
+        "type": "ui_spacer",
+        "z": "9ca6a5fd61363709",
+        "name": "spacer",
+        "group": "b04f1bfb73eded40",
+        "order": 12,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "67d8f3f903448341",
+        "type": "ui_spacer",
+        "z": "9ca6a5fd61363709",
+        "name": "spacer",
+        "group": "af3042d9737bfff4",
+        "order": 1,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "4d58a178d7271442",
+        "type": "ui_spacer",
+        "z": "9ca6a5fd61363709",
+        "name": "spacer",
+        "group": "af3042d9737bfff4",
+        "order": 2,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "f4bb0215e8b610dc",
+        "type": "ui_spacer",
+        "z": "9ca6a5fd61363709",
+        "name": "spacer",
+        "group": "af3042d9737bfff4",
+        "order": 4,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "28e2633ee2efdea3",
+        "type": "ui_spacer",
+        "z": "9ca6a5fd61363709",
+        "name": "spacer",
+        "group": "af3042d9737bfff4",
+        "order": 6,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "b04f1bfb73eded40",
+        "type": "ui_group",
+        "name": "Styring",
+        "tab": "5db129e166325242",
+        "order": 1,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "af3042d9737bfff4",
+        "type": "ui_group",
+        "name": "Simulering",
+        "tab": "5db129e166325242",
+        "order": 2,
+        "disp": true,
+        "width": 8,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5db129e166325242",
+        "type": "ui_tab",
+        "name": "Styring",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
