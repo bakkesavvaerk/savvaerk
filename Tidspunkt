@@ -1,0 +1,15 @@
+var currentDate = new Date();
+var currentHour = currentDate.getHours();
+flow.set("Tidspunkt",currentDate);
+
+var data = msg.payload;
+
+// Find the data object for the current hour
+var currentData = data.find(function (item) {
+    var startTime = new Date(item.time_start);
+    var startHour = startTime.getHours();
+    return startHour === currentHour;
+});
+
+msg.payload = currentData;
+return msg;
